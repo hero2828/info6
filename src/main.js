@@ -7,7 +7,7 @@ export default async ({ req, res, log, error }) => {
     .setKey(req.headers['x-appwrite-key'] ?? '');
   const users = new Users(client);
   log(process.env.collection);
-  log(req);
+  log(req.query);
   try {
     return res.json({ message: 'User11 2created successfully' });
   } catch (err) {
