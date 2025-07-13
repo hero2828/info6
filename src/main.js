@@ -8,7 +8,7 @@ export default async ({ req, res, log, error }) => {
   const users = new Users(client);
   log(process.env.collection);
   try {
-    return res.json({ message: res.bodyJson||'User created successfully' });
+    return res.json({ message: res.bodyJson||'User11 created successfully' });
   } catch (err) {
     error('Could not list users: ' + err.message);
   }
