@@ -15,10 +15,7 @@ export default async ({ req, res, log, error }) => {
       name:'-',
     }
   )
-  log(process.env.collection);
-  try {
-    return res.json({ message: promise,env:process.env });
-  } catch (err) {
-    error('Could not list users: ' + err.message);
-  }
+  promise.then(data=>{
+    return res.json({ message: data,env:process.env });
+  })
 }
