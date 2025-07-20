@@ -7,7 +7,7 @@ export default async ({ req, res, log, error }) => {
     .setKey(req.headers['x-appwrite-key'] ?? '');
   const users = new Users(client);
   const db=new Databases(client)
-  const promise=db.createDocument(
+  const promise= await db.createDocument(
     process.env.db,
     process.env.collection,
     ID.unique(),
@@ -15,12 +15,9 @@ export default async ({ req, res, log, error }) => {
       name:'-',
     }
   )
-  promise.then(r=>{
-    return res.json({message:r})
-  })
   log(process.env.collection);
   try {
-    return res.json({ message: req.query??'User11 2created successfully',env:process.env });
+    return res.json({ message: promise,env:process.env });
   } catch (err) {
     error('Could not list users: ' + err.message);
   }
