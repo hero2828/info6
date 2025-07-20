@@ -4,7 +4,7 @@ export default async ({ req, res, log, error }) => {
   const client = new Client()
     .setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT)
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
-    .setKey(req.headers['x-appwrite-key'] ?? '');
+    .setKey(process.env.key);
   const users = new Users(client);
   const db=new Databases(client)
   const promise= await db.createDocument(
