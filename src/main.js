@@ -12,6 +12,7 @@ export default async ({ req, res, log, error }) => {
     const data = db.listDocuments(
       process.env.db,
       'cls',
+      []
     )
     return res.send({ data }, 200, {
       'Access-Control-Allow-Origin': '*',
