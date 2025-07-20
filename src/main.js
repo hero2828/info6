@@ -16,7 +16,7 @@ export default async ({ req, res, log, error }) => {
     }
   )
   const data = await promise;
-  return res.json({ message: data, env: process.env }，200，{
+  return res.send({ message: data, env: process.env }，200，{
     'Access-Control-Allow-Origin': '*',
   });
 }
