@@ -11,7 +11,7 @@ export default async ({ req, res, log, error }) => {
   if (req.path === '/cls') {
     const data = db.listDocuments(
       process.env.db,
-      process.env.process.env.db
+      process.env.collection
     )
     return res.send({ data, time: new Date().toLocaleDateString() }, 200, {
       'Access-Control-Allow-Origin': '*',
