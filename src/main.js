@@ -12,9 +12,9 @@ export default async ({ req, res, log, error }) => {
     const data = db.listDocuments(
       process.env.db,
       process.env.collection,
-      []
+      ['name']
     )
-    return res.send({ data, time: new Date().toLocaleDateString() }, 200, {
+    return res.send({ data, time: new Date().toLocaleDateString(),path:req.path }, 200, {
       'Access-Control-Allow-Origin': '*',
     })
   }
