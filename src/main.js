@@ -1,4 +1,4 @@
-import { Client, Users, Databases } from 'node-appwrite';
+import { Client, Users, Databases,ID } from 'node-appwrite';
 
 export default async ({ req, res, log, error }) => {
   const client = new Client()
@@ -6,6 +6,15 @@ export default async ({ req, res, log, error }) => {
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
     .setKey(req.headers['x-appwrite-key'] ?? '');
   const users = new Users(client);
+  const db=new Databases(client)
+  const promise=db.createDocument(
+    process.env.db,
+    process.env.collection,
+    ID.unique(),
+    {
+      name:'-',
+    }
+  )
   log(process.env.collection);
   try {
     return res.json({ message: req.query??'User11 2created successfully',env:process.env });
