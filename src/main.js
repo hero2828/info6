@@ -1,4 +1,4 @@
-import { Client, Databases, ID, Users } from 'node-appwrite'
+import { Client, Databases, ID, Query, Users } from 'node-appwrite'
 
 export default async ({ req, res, log, error }) => {
   const client = new Client()
@@ -7,6 +7,18 @@ export default async ({ req, res, log, error }) => {
     .setKey(process.env.key)
   const users = new Users(client)
   const db = new Databases(client)
+
+  if (req.path === '/cls') {
+    const data = db.listDocuments(
+      process.env.db,
+      'cls',
+      [Query.equal('name', ['技术栈'])],
+    )
+    return res.send({ data }, 200, {
+      'Access-Control-Allow-Origin': '*',
+    })
+  }
+
   const promise = db.createDocument(
     process.env.db,
     process.env.collection,
