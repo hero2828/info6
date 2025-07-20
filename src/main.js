@@ -12,10 +12,9 @@ export default async ({ req, res, log, error }) => {
     process.env.collection,
     ID.unique(),
     {
-      name:'-',
+      name:'-'+new Date().toLocaleDateString(),
     }
   )
-  promise.then(data=>{
-    return res.json({ message: data,env:process.env });
-  })
+  const data = await promise;
+  return res.json({ message: data, env: process.env });
 }
