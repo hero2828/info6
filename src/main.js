@@ -15,6 +15,9 @@ export default async ({ req, res, log, error }) => {
       name:'-',
     }
   )
+  promise.then(r=>{
+    return res.json({message:r})
+  })
   log(process.env.collection);
   try {
     return res.json({ message: req.query??'User11 2created successfully',env:process.env });
