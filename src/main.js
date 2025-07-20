@@ -7,7 +7,7 @@ export default async ({ req, res, log, error }) => {
     .setKey(process.env.key);
   const users = new Users(client);
   const db=new Databases(client)
-  const promise= await db.createDocument(
+  const promise= db.createDocument(
     process.env.db,
     process.env.collection,
     ID.unique(),
