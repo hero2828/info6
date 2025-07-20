@@ -12,13 +12,11 @@ export default async ({ req, res, log, error }) => {
     process.env.collection,
     ID.unique(),
     {
-      name:'-'+new Date().toLocaleDateString(),
+      name:new Date().toLocaleString(),
     }
   )
   const data = await promise;
   return res.json({ message: data, env: process.env }，200，{
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   });
 }
